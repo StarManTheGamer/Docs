@@ -44,13 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create Pull Request
+      - name: Push changes
         if: env.changes_committed == 'true'
-        uses: peter-evans/create-pull-request@v5
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore: format code with Prettier'
-          branch: prettier-fix
-          title: 'chore: format code with Prettier'
-          body: 'This PR formats the code with Prettier.'
-          labels: prettier
+        run: git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
